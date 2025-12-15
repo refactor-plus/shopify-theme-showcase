@@ -150,6 +150,7 @@
         "first_level_bzDWmb": {
           "type": "first-level",
           "settings": {
+            "promo_image": "shopify://shop_images/maxresdefault.jpg",
             "promo_image_title": "Title",
             "promo_image_link_text": "link text",
             "promo_image_link": "shopify://collections"
@@ -158,6 +159,7 @@
         "first_level_BLFBbd": {
           "type": "first-level",
           "settings": {
+            "promo_image": "shopify://shop_images/clothes-on-clothing-hanger-600nw-2338282257.webp",
             "promo_image_title": "Title",
             "promo_image_link_text": "link text",
             "promo_image_link": "shopify://collections"
@@ -167,6 +169,7 @@
           "type": "second-level",
           "settings": {
             "parent": "Clothing",
+            "promo_image": "shopify://shop_images/il_570xN.2936201832_7tk5.webp",
             "promo_image_title": "title",
             "promo_image_link_text": "link text",
             "promo_image_link": "shopify://collections/frontpage"
@@ -176,6 +179,7 @@
           "type": "second-level",
           "settings": {
             "parent": "Footwear",
+            "promo_image": "shopify://shop_images/aesthetic-minimalist-fashion-influencer-blog-composition-stylish-pastel-summer-female-clothes-dress-tops-t-shirts-straw-hat-clothing-rack-against-white-wall_408798-8747.avif",
             "promo_image_title": "title",
             "promo_image_link_text": "link text",
             "promo_image_link": "shopify://collections/frontpage"
