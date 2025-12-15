@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "name": "Header group",
   "type": "header",
   "sections": {
@@ -17,21 +17,21 @@
         "slide_CqzB9U": {
           "type": "slide",
           "settings": {
-            "text": "Placeholder text",
+            "text": "✨ Free shipping on orders over $100",
             "block_link": ""
           }
         },
         "slide_FCFR48": {
           "type": "slide",
           "settings": {
-            "text": "Placeholder text",
+            "text": "🖤 New Collection is Live — Shop Now",
             "block_link": ""
           }
         },
         "slide_CNWwgi": {
           "type": "slide",
           "settings": {
-            "text": "Placeholder text",
+            "text": "🔥 Limited Stock — Don’t Miss Out",
             "block_link": ""
           }
         }
@@ -94,7 +94,6 @@
         "image_block_iYhw4V": {
           "type": "image-block",
           "settings": {
-            "image": "shopify://shop_images/person-fishing-on-the-beach-is-silhouetted-at-sunset.jpg",
             "title": "Title",
             "subtitle": "Shop Now",
             "link_url": "shopify://collections"
@@ -103,7 +102,6 @@
         "image_block_e3Wyft": {
           "type": "image-block",
           "settings": {
-            "image": "shopify://shop_images/rack-of-womens-clothing.jpg",
             "title": "Title",
             "subtitle": "Shop Now",
             "link_url": "shopify://collections"
@@ -112,7 +110,6 @@
         "image_block_AwwgRm": {
           "type": "image-block",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_9_._2025_._11_35_43.png",
             "title": "Title",
             "subtitle": "Shop Now",
             "link_url": "shopify://collections"
@@ -121,7 +118,6 @@
         "image_block_9mXj3H": {
           "type": "image-block",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_9_._2025_._12_02_49.png",
             "title": "Title",
             "subtitle": "Shop Now",
             "link_url": "shopify://collections"
@@ -150,7 +146,6 @@
         "first_level_bzDWmb": {
           "type": "first-level",
           "settings": {
-            "promo_image": "shopify://shop_images/bright-yellow-flowers.jpg",
             "promo_image_title": "Title",
             "promo_image_link_text": "link text",
             "promo_image_link": "shopify://collections"
@@ -159,7 +154,6 @@
         "first_level_BLFBbd": {
           "type": "first-level",
           "settings": {
-            "promo_image": "shopify://shop_images/bright-yellow-flowers.jpg",
             "promo_image_title": "Title",
             "promo_image_link_text": "link text",
             "promo_image_link": "shopify://collections"
@@ -169,7 +163,6 @@
           "type": "second-level",
           "settings": {
             "parent": "Clothing",
-            "promo_image": "shopify://shop_images/large-fall-leaf-in-hand.jpg",
             "promo_image_title": "title",
             "promo_image_link_text": "link text",
             "promo_image_link": "shopify://collections/frontpage"
@@ -179,7 +172,6 @@
           "type": "second-level",
           "settings": {
             "parent": "Footwear",
-            "promo_image": "shopify://shop_images/woman-holding-maple-leaf-in-fall.jpg",
             "promo_image_title": "title",
             "promo_image_link_text": "link text",
             "promo_image_link": "shopify://collections/frontpage"
@@ -194,8 +186,10 @@
       ],
       "name": "Mobile Menu",
       "settings": {
-        "menu": "mobile-menu",
-        "show_expanded_icon": true
+        "menu": "",
+        "show_expanded_icon": true,
+        "bg_color": "#ffffff",
+        "text_color": "#000000"
       }
     }
   },
