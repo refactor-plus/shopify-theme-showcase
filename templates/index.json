@@ -420,8 +420,8 @@
         "bg_color": "#ffffff",
         "enable_container": true,
         "container_width": 1440,
-        "products_source": "products_list",
-        "collection": "refactor-clothing",
+        "products_source": "collection",
+        "collection": "frontpage",
         "product_list": [
           "blush",
           "fedora",
