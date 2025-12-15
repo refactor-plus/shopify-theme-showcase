@@ -186,7 +186,7 @@
       ],
       "name": "Mobile Menu",
       "settings": {
-        "menu": "",
+        "menu": "main-menu-1",
         "show_expanded_icon": true,
         "bg_color": "#ffffff",
         "text_color": "#000000"
