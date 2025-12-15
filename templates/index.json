@@ -286,7 +286,7 @@
         "slides_per_view": 1,
         "slider_loop": true,
         "slider_autoplay": true,
-        "slider_autoplay_delay": 4,
+        "slider_autoplay_delay": 5,
         "enable_slider_grab_cursor": true,
         "enable_slider_scrollbar": false,
         "slider_space_between": 0,
