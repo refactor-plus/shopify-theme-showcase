@@ -1,0 +1,95 @@
+{
+  "accessibility": {
+    "skip_to_text": "Skip to content",
+    "refresh_page": "Choosing a selection results in a full page refresh.",
+    "link_messages": {
+      "new_window": "Opens in a new window.",
+      "external": "Opens external website."
+    }
+  },
+  "components": {
+    "care_contact_us_form": {
+      "comment": "We're here to help. You can get in touch with our Customer Service team below for assistance with any questions you might have.",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "phone": "Phone number",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Submit",
+      "post_success": "Thanks for contacting us. Our customer support team will aim to reply to all questions within 48 hours of receipt.",
+      "message_error": "Your message cannot be blank",
+      "subject_error": "Please select one of the available subjects"
+    },
+    "product-card": {
+      "badge_discount": "Discount -{{discount}}%",
+      "badge_low_stock": "Only {{stock}} left",
+      "add_to_cart": "Add to Cart",
+      "sold_out": "Sold out"
+    }
+  },
+  "sections": {
+    "header": {
+      "shop": "Shop",
+      "search": "Search"
+    },
+    "mobile_menu": {
+      "header_title": "Menu",
+      "back": "Back",
+      "account": "My Account"
+    },
+    "contact_form": {
+      "post_success": "Your message has been sent successfully.",
+      "placeholders": {
+        "full_name": "Full Name",
+        "email": "Email Address",
+        "subject": "Subject (Optional)",
+        "order_number": "Order Number (Optional)",
+        "message": "Message",
+        "send": "Send Message"
+      },
+      "errors": {
+        "full_name": "Name must contain only letters",
+        "email": "Enter a valid email address like example@example.com",
+        "message": "Incorrect message",
+        "message_chars": "Message must be {{charCount}} characters or less",
+        "form": "Couldn’t send your message, please try again"
+      }
+    },
+    "care_content": {
+      "care": "Customer Care",
+      "find": "CAN'T FIND YOUR ANSWER OR NEED HELP?",
+      "support": "SPEAK TO LIVE SUPPORT",
+      "contact_us_title": "Contact Us",
+      "contact": "Contact",
+      "address": "Address"
+    },
+    "care_contact": {
+      "subtitle": "We're here to help. You can get in touch with our Customer Service team below for assistance with any questions you might have.",
+      "form": {
+        "first_name": "First Name",
+        "last_name": "Last Name",
+        "email": "Email",
+        "phone": "Phone Number",
+        "country": "Country",
+        "subject": "Subject",
+        "message": "Message",
+        "send": "Submit",
+        "post_success": "Thanks for contacting us. Our customer support team will aim to reply to all questions within 48 hours of receipt."
+      },
+      "info": {
+        "email_title": "Email address",
+        "email": "customerservice@refactorplus.com",
+        "uk_row_telephone_title": "",
+        "uk_row_telephone": "",
+        "us_telephone_title": "Contact Number",
+        "us_telephone": "+44 30 4984 4722",
+        "opening_hours_title": "Opening hours",
+        "opening_hours": "We aim to reply within 1-2 working days",
+        "address_title": "Head office address",
+        "address_html": "Unit 303 Shrek Studios<br>242 Acklam Road<br>W10 5JJ<br>Shrek",
+        "email_exist_error": "This email address is already associated with an account."
+      }
+    }
+  }
+}

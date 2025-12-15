@@ -1,0 +1,575 @@
+{{ 'section-two-column.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} .s-two-column__inner {
+    padding-top: {{ section.settings.section_padding_top_mobile | append: 'px' }};
+    padding-bottom: {{ section.settings.section_padding_bottom_mobile | append: 'px' }};
+  }
+
+  #shopify-section-{{ section.id }} .s-two-column__content {
+    background-color: {{ section.settings.content_background_color }};
+  }
+
+  #shopify-section-{{ section.id }} .s-two-column__title {
+    font-size: {{ section.settings.title_font_size_mobile | append: 'px' }};
+    font-weight: {{ section.settings.title_font_weight }};
+    color: {{ section.settings.title_color }};
+
+    {% if section.settings.title_is_italic %}
+      font-style: italic;
+    {% endif %}
+
+    text-transform: {{ section.settings.title_transform }};
+
+    {% if section.settings.title_is_underline %}
+      text-decoration: underline;
+    {% endif %}
+  }
+
+  #shopify-section-{{ section.id }} .s-two-column__subtitle {
+    font-size: {{ section.settings.subtitle_font_size_mobile | append: 'px' }};
+    font-weight: {{ section.settings.subtitle_font_weight }};
+    color: {{ section.settings.subtitle_color }};
+
+    {% if section.settings.subtitle_is_italic %}
+      font-style: italic;
+    {% endif %}
+  }
+
+  #shopify-section-{{ section.id }} .s-two-column__link, .s-two-column__text {
+    font-size: {{ section.settings.link_font_size_mobile | append: 'px' }};
+    font-weight: {{ section.settings.link_font_weight }};
+    color: {{ section.settings.link_color }};
+  }
+
+  #shopify-section-{{ section.id }} .s-two-column__link {
+    {% if section.settings.link_is_underline %}
+      text-decoration: underline;
+    {% endif %}
+    {% if section.settings.link_is_italic %}
+      font-style: italic;
+    {% endif %}
+  }
+
+  #shopify-section-{{ section.id }} .s-two-column__link:hover {
+    color: {{ section.settings.link_color_hover }};
+  }
+
+  @media screen and (min-width: 768px) {
+    #shopify-section-{{ section.id }} .s-two-column__inner {
+      padding-top: {{ section.settings.section_padding_top | append: 'px' }};
+      padding-bottom: {{ section.settings.section_padding_bottom | append: 'px' }};
+    }
+
+    #shopify-section-{{ section.id }} .s-two-column__title {
+      font-size: {{ section.settings.title_font_size_desktop | append: 'px' }};
+    }
+
+    #shopify-section-{{ section.id }} .s-two-column__subtitle {
+      font-size: {{ section.settings.subtitle_font_size_desktop | append: 'px' }};
+    }
+
+    #shopify-section-{{ section.id }} .s-two-column__link, .s-two-column__text {
+      font-size: {{ section.settings.link_font_size_desktop | append: 'px' }};
+    }
+  }
+{% endstyle %}
+
+{% liquid
+  assign title = section.settings.title
+  assign subtitle = section.settings.subtitle
+  assign link_url = section.settings.link_url
+  assign link_text = section.settings.link_text
+
+  if section.settings.background_type == 'image'
+    assign promo_desktop = section.settings.banner_image_desktop
+    assign promo_mobile = section.settings.banner_image_mobile | default: promo_desktop
+  elsif section.settings.background_type == 'video'
+    assign promo_desktop = section.settings.banner_video_desktop
+    assign promo_mobile = section.settings.banner_video_mobile | default: promo_desktop
+  endif
+%}
+
+<div class="s-two-column">
+  <div
+    class="
+      s-two-column__inner
+      {% if section.settings.reverse_content_desktop %}s-two-column__inner--reverse-desktop{% endif %}
+      {% if section.settings.reverse_content_mobile %}s-two-column__inner--reverse-mobile{% endif %}
+    "
+  >
+    <div class="s-two-column__content">
+      {% if title != blank %}
+        <h2
+          class="s-two-column__title"
+          {% if request.visual_preview_mode %}
+            style="font-size: 48px;"
+          {% endif %}
+        >
+          {{ title }}
+        </h2>
+      {% endif %}
+
+      {% if subtitle != blank %}
+        <div
+          class="s-two-column__subtitle"
+          {% if request.visual_preview_mode %}
+            style="font-size: 40px;"
+          {% endif %}
+        >
+          {{ subtitle }}
+        </div>
+      {% endif %}
+
+      {% if link_text != blank %}
+        {% if link_url != blank %}
+          <a class="s-two-column__link" href="{{ link_url }}">{{ link_text }}</a>
+        {% else %}
+          <p class="s-two-column__text">{{ link_text }}</p>
+        {% endif %}
+      {% endif %}
+    </div>
+
+    {% if section.settings.background_url != blank %}
+      <a class="s-two-column__background" href="{{ section.settings.background_url }}">
+        {% if section.settings.background_type == 'image' %}
+          {% if promo_mobile != blank %}
+            {% render 'image-lazy',
+              image: promo_mobile,
+              class: 's-two-column__background-img s-two-column__background-img--mobile'
+            %}
+          {% endif %}
+          {% if promo_desktop != blank %}
+            {% render 'image-lazy',
+              image: promo_desktop,
+              class: 's-two-column__background-img s-two-column__background-img--desktop'
+            %}
+          {% endif %}
+        {% elsif section.settings.background_type == 'video' %}
+          {% if promo_mobile != blank %}
+            {{
+              promo_mobile
+              | video_tag:
+                autoplay: true,
+                loop: true,
+                muted: true,
+                controls: false,
+                image_size: '768x',
+                class: 's-two-column__background-video s-two-column__background-video--mobile'
+            }}
+          {% endif %}
+          {% if promo_desktop != blank %}
+            {{
+              promo_desktop
+              | video_tag:
+                autoplay: true,
+                loop: true,
+                muted: true,
+                controls: false,
+                image_size: '768x',
+                class: 's-two-column__background-video s-two-column__background-video--desktop'
+            }}
+          {% endif %}
+        {% endif %}
+      </a>
+    {% else %}
+      <div class="s-two-column__background">
+        {% if section.settings.background_type == 'image' %}
+          {% if promo_mobile != blank %}
+            {% render 'image-lazy',
+              image: promo_mobile,
+              class: 's-two-column__background-img s-two-column__background-img--mobile'
+            %}
+          {% endif %}
+          {% if promo_desktop != blank %}
+            {% render 'image-lazy',
+              image: promo_desktop,
+              class: 's-two-column__background-img s-two-column__background-img--desktop'
+            %}
+          {% endif %}
+        {% elsif section.settings.background_type == 'video' %}
+          {% if promo_mobile != blank %}
+            {{
+              promo_mobile
+              | video_tag:
+                autoplay: true,
+                loop: true,
+                muted: true,
+                controls: false,
+                image_size: '768x',
+                class: 's-two-column__background-video s-two-column__background-video--mobile'
+            }}
+          {% endif %}
+          {% if promo_desktop != blank %}
+            {{
+              promo_desktop
+              | video_tag:
+                autoplay: true,
+                loop: true,
+                muted: true,
+                controls: false,
+                image_size: '768x',
+                class: 's-two-column__background-video s-two-column__background-video--desktop'
+            }}
+          {% endif %}
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Two-Column Banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Padding (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top_mobile",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom_mobile",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "reverse_content_desktop",
+      "label": "Reverse Content (Desktop)",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "reverse_content_mobile",
+      "label": "Reverse Content (Mobile)",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "content_background_color",
+      "label": "Content Background Color",
+      "default": "#F6F5F0"
+    },
+    {
+      "type": "header",
+      "content": "Background Settings"
+    },
+    {
+      "type": "select",
+      "id": "background_type",
+      "label": "Background Type",
+      "options": [
+        { "label": "Image", "value": "image" },
+        { "label": "Video", "value": "video" }
+      ],
+      "default": "image"
+    },
+    {
+      "type": "url",
+      "id": "background_url",
+      "label": "Background URL"
+    },
+    {
+      "type": "header",
+      "content": "Image Background Settings",
+      "visible_if": "{{ section.settings.background_type == 'image' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image_desktop",
+      "label": "Image (Desktop)",
+      "info": "Recommended size: 760x760",
+      "visible_if": "{{ section.settings.background_type == 'image' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image_mobile",
+      "label": "Image (Mobile)",
+      "info": "Recommended size: 400x400",
+      "visible_if": "{{ section.settings.background_type == 'image' }}"
+    },
+    {
+      "type": "header",
+      "content": "Video Background Settings",
+      "visible_if": "{{ section.settings.background_type == 'video' }}"
+    },
+    {
+      "type": "video",
+      "id": "banner_video_desktop",
+      "label": "Video (Desktop)",
+      "info": "Recommended size: 760x760",
+      "visible_if": "{{ section.settings.background_type == 'video' }}"
+    },
+    {
+      "type": "video",
+      "id": "banner_video_mobile",
+      "label": "Video (Mobile)",
+      "info": "Recommended size: 400x400",
+      "visible_if": "{{ section.settings.background_type == 'video' }}"
+    },
+    {
+      "type": "header",
+      "content": "Title Settings"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#150C06"
+    },
+    {
+      "type": "range",
+      "id": "title_font_weight",
+      "label": "Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 400
+    },
+    {
+      "type": "select",
+      "id": "title_transform",
+      "label": "Text transform",
+      "options": [
+        { "label": "Uppercase", "value": "uppercase" },
+        { "label": "Capitalize", "value": "capitalize" }
+      ],
+      "default": "capitalize"
+    },
+    {
+      "type": "checkbox",
+      "id": "title_is_italic",
+      "label": "Italic",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "title_is_underline",
+      "label": "Underline",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Title Settings (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size_desktop",
+      "label": "Font Size",
+      "min": 12,
+      "max": 60,
+      "step": 2,
+      "default": 26,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Title Settings (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size_mobile",
+      "label": "Font Size",
+      "min": 12,
+      "max": 60,
+      "step": 2,
+      "default": 26,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Subtitle Settings"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#39210B"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_font_weight",
+      "label": "Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 400
+    },
+    {
+      "type": "checkbox",
+      "id": "subtitle_is_italic",
+      "label": "Italic",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Subtitle Settings (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_font_size_desktop",
+      "label": "Font Size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "default": 14,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Subtitle Settings (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_font_size_mobile",
+      "label": "Font Size",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "default": 14,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Link Settings"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link Text"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL",
+      "default": "/"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link Color",
+      "default": "#1F1919"
+    },
+    {
+      "type": "color",
+      "id": "link_color_hover",
+      "label": "Link Color Hover",
+      "default": "#1F1919"
+    },
+    {
+      "type": "range",
+      "id": "link_font_weight",
+      "label": "Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 400
+    },
+    {
+      "type": "checkbox",
+      "id": "link_is_underline",
+      "label": "Underline",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "link_is_italic",
+      "label": "Italic",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Link Settings (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "link_font_size_desktop",
+      "label": "Font Size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "default": 14,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Link Settings (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "link_font_size_mobile",
+      "label": "Font Size",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "default": 14,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Two-Column Banner",
+      "settings": {
+        "banner_image_desktop": "shopify://shop_images/drone-view-of-car-driving-through-forest.jpg",
+        "title": "Lorem, ipsum.",
+        "subtitle": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae tempore excepturi facere corrupti at omnis."
+      }
+    }
+  ],
+  "enabled_on": {
+    "templates": ["*"]
+  }
+}
+{% endschema %}
