@@ -2,7 +2,7 @@
 {% assign bold_hide_item = false %}
 {% assign bold_item_type = 'page'%}
 {% for bold_rule in page.metafields.bold_mem %}
-	{% if bold_rule.last== 'hide' %}
+	{% if bold_rule.last %}
 		{% assign bold_hide_item = false %}
 	{% endif %}
 	{% if bold_rule.last == 'show' %}
@@ -23,3 +23,13 @@
 	  {% endif %}
 	{% endfor %}
 {% endfor %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% if bold_rule.last== 'hide' %}"
+  to: "{% if bold_rule.last %}"
+  position: 209..232
+{% endcomment %}
